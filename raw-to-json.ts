@@ -14,18 +14,23 @@ import SkyFiles from "skyfiles";
     }
     all.sort((a, b) => a.rank - b.rank);
 
-    let parameter1 = "[";
-    let parameter2 = "[";
-    for (const [index, info] of all.entries()) {
-        if (index > 0) {
-            parameter1 += ",";
-            parameter2 += ",";
+    for (let i = 0; i < 9; i += 1) {
+
+        let parameter1 = "[";
+        let parameter2 = "[";
+        for (const [index, info] of all.entries()) {
+            if (index >= i * 100 && index < (i + 1) * 100) {
+                if (index > i * 100) {
+                    parameter1 += ",";
+                    parameter2 += ",";
+                }
+                parameter1 += index;
+                parameter2 += `"${info.address}"`;
+            }
         }
-        parameter1 += index;
-        parameter2 += `"${info.address}"`;
+        parameter1 += "]";
+        parameter2 += "]";
+        await SkyFiles.write(`parameters/parameter-${i}-2.txt`, parameter1);
+        await SkyFiles.write(`parameters/parameter-${i}-1.txt`, parameter2);
     }
-    parameter1 += "]";
-    parameter2 += "]";
-    await SkyFiles.write("parameter1.txt", parameter1);
-    await SkyFiles.write("parameter2.txt", parameter2);
 })();
