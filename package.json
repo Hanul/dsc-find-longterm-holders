@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "caver-js": "^1.6.4",
+        "skyfiles": "^0.0.2",
+        "skyutil": "^0.0.12"
+    },
+    "devDependencies": {
+        "@types/node": "^16.9.1"
+    }
+}
